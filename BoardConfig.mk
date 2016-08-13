@@ -101,9 +101,9 @@ EXTENDED_FONT_FOOTPRINT             := true
 MALLOC_IMPL                         := dlmalloc
 
 # Vendor Init
+# Vendor Init
+TARGET_LIBINIT_DEFINES_FILE          := $(DEVICE_PATH)/init/init_fortuna3g.cpp
 TARGET_UNIFIED_DEVICE                := true
-TARGET_INIT_VENDOR_LIB               := libinit_fortuna3g
-TARGET_RECOVERY_DEVICE_MODULES       := libinit_fortuna3g
 
 # Audio
 TARGET_QCOM_AUDIO_VARIANT            := caf
