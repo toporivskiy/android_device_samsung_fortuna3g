@@ -3,6 +3,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Also get non-open-source specific aspects if available
 $(call inherit-product-if-exists, vendor/samsung/fortuna3g/fortuna3g-common-vendor.mk)
 
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
+
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/fortuna3g/overlay
 
