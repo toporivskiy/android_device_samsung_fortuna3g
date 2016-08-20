@@ -95,12 +95,11 @@ BLUETOOTH_HCI_USE_MCT                       := true
 # Custom RIL class
 BOARD_RIL_CLASS                     := ../../../device/samsung/fortuna3g/ril/
 PROTOBUF_SUPPORTED                  := true
-USE_DEVICE_SPECIFIC_DATASERVICES    := true
+#USE_DEVICE_SPECIFIC_DATASERVICES    := true
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT             := true
 
-# Vendor Init
 # Vendor Init
 TARGET_LIBINIT_DEFINES_FILE          := $(DEVICE_PATH)/init/init_fortuna3g.cpp
 TARGET_UNIFIED_DEVICE                := true

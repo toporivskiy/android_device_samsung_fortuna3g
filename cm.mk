@@ -8,9 +8,10 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 $(call inherit-product, device/samsung/fortuna3g/device_fortuna3g.mk)
 
 ## Device identifier. This must come after all inclusions
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
 PRODUCT_DEVICE := fortuna3g
 PRODUCT_NAME := cm_fortuna3g
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_MODEL := SM-G530H
-PRODUCT_CHARACTERISTICS := phone
