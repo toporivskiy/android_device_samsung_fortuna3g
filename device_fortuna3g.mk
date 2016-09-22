@@ -141,6 +141,13 @@ PRODUCT_PACKAGES += \
     Snap \
     libmm-qcamera \
     camera.msm8916
+	
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8916 \
+	libloc_core \
+	libloc_eng \
+	libgps.utils
 
 # OMX
 PRODUCT_PACKAGES += \
