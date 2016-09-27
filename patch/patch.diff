@@ -1,3 +1,89 @@
+diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallsManager.java b/packages/services/Telecomm/src/com/android/server/telecom/CallsManager.java
+--- a/packages/services/Telecomm/src/com/android/server/telecom/CallsManager.java	Wed Apr 20 08:50:20 2016
++++ b/packages/services/Telecomm/src/com/android/server/telecom/CallsManager.java	Thu May 12 01:31:40 2016
+@@ -86,6 +86,14 @@
+ import org.codeaurora.ims.QtiCallConstants;
+ import org.codeaurora.ims.utils.QtiImsExtUtils;
+ import org.codeaurora.internal.IExtTelephony;
++
++import android.app.ActivityManagerNative;
++import android.media.IAudioService;
++import android.os.Binder;
++import android.os.IBinder;
++import android.telephony.SubscriptionManager;
++import com.android.internal.util.Preconditions;
++
+ /**
+  * Singleton.
+  *
+@@ -1879,6 +1887,22 @@
+         mCallLogManager.logCall(incomingCall, Calls.MISSED_TYPE,
+                 true /*showNotificationForMissedCall*/);
+     }
++	
++	private int getPhoneId(Call call) {
++        if (call.getTargetPhoneAccount() != null) {
++            PhoneAccountHandle account = call.getTargetPhoneAccount();
++            try {
++                int index = Integer.parseInt(account.getId());
++                int phoneId = SubscriptionManager.getPhoneId(index);
++                if (SubscriptionManager.isValidPhoneId(phoneId)) {
++                    return phoneId;
++                }
++            } catch (NumberFormatException e) {
++                Log.e(this, e, "Cannot get phoneId from ID value " + account.getId());
++            }
++        }
++        return -1;
++    }
+ 
+     /**
+      * Adds the specified call to the main list of live calls.
+@@ -1898,6 +1922,21 @@
+                 SystemClock.elapsedRealtime());
+ 
+         updateCallsManagerState();
++		
++		boolean setMsimAudioParams = SystemProperties.getBoolean("ro.multisim.set_audio_params", false);
++		boolean setSamsungRealcallParams = SystemProperties.getBoolean("ro.telephony.samsung.realcall", false);
++		if(setMsimAudioParams){
++			mCallAudioManager.setParameters("realcall=on");
++		}
++		if(setMsimAudioParams){
++			int phoneId = getPhoneId(call);
++			if (phoneId == 0) {
++				mCallAudioManager.setParameters("phone_type=cp1");
++			} else if (phoneId == 1) {
++				mCallAudioManager.setParameters("phone_type=cp2");
++			}
++		}
++		
+         // onCallAdded for calls which immediately take the foreground (like the first call).
+         for (CallsManagerListener listener : mListeners) {
+             if (Log.SYSTRACE_DEBUG) {
+@@ -1908,7 +1947,7 @@
+                 Trace.endSection();
+             }
+         }
+-        Trace.endSection();
++        Trace.endSection();		
+     }
+ 
+     private void removeCall(Call call) {
+@@ -1940,6 +1979,12 @@
+                 }
+             }
+         }
++		
++		boolean setSamsungRealcallParams = SystemProperties.getBoolean("ro.telephony.samsung.realcall", false);
++		if(setSamsungRealcallParams){
++			mCallAudioManager.setParameters("realcall=off");
++		}
++		
+         Trace.endSection();
+     }
+ 
+
 diff -ur a/frameworks/base/services/core/java/com/android/server/display/DisplayManagerService.java b/frameworks/base/services/core/java/com/android/server/display/DisplayManagerService.java
 --- a/frameworks/base/services/core/java/com/android/server/display/DisplayManagerService.java	Mon Jun 20 17:28:46 2016
 +++ b/frameworks/base/services/core/java/com/android/server/display/DisplayManagerService.java	Mon Jun 27 10:45:01 2016
