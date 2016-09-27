@@ -98,7 +98,7 @@ PROTOBUF_SUPPORTED                  := true
 EXTENDED_FONT_FOOTPRINT             := true
 
 # malloc implementation
-MALLOC_IMPL                         := dlmalloc
+MALLOC_IMPL                         := jemalloc
 
 # Vendor Init
 TARGET_UNIFIED_DEVICE               := true
