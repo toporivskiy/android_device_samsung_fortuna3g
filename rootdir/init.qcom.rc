@@ -89,9 +89,6 @@ on early-init
 
 on init
     export LD_SHIM_LIBS /system/lib/libril.so|libril_shim.so:/system/lib/libcrypto.so|libboringssl-compat.so
-  
-    # Set permissions for persist partition
-    mkdir /persist 0771 system system
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -615,7 +612,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     class main
     user camera
     group camera system inet input graphics
-	writepid /dev/cpuset/system-background/tasks
+#    writepid /dev/cpuset/system-background/tasks
 
 service qseecomd /system/bin/qseecomd
    class core
