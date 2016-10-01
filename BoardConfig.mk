@@ -94,12 +94,12 @@ BOARD_HAVE_BLUETOOTH_QCOM                   := true
 BLUETOOTH_HCI_USE_MCT                       := true
 
 # Custom RIL class
-BOARD_RIL_CLASS                     := ../../../device/samsung/fortuna3g/ril/
-PROTOBUF_SUPPORTED                  := true
+BOARD_RIL_CLASS                      := ../../../device/samsung/fortuna3g/ril/
+PROTOBUF_SUPPORTED                   := true
 #USE_DEVICE_SPECIFIC_DATASERVICES    := true
 
 # Fonts
-EXTENDED_FONT_FOOTPRINT             := true
+EXTENDED_FONT_FOOTPRINT              := true
 
 # Vendor Init
 TARGET_UNIFIED_DEVICE                := true
@@ -109,7 +109,6 @@ TARGET_RECOVERY_DEVICE_MODULES       := libinit_fortuna3g
 # Audio
 BOARD_USES_ALSA_AUDIO                := true
 USE_CUSTOM_AUDIO_POLICY              := 1
-TARGET_USES_QCOM_MM_AUDIO            := true
 TARGET_QCOM_AUDIO_VARIANT            := caf
 
 # Charger
@@ -148,15 +147,15 @@ TARGET_PROVIDES_LIBLIGHT            := true
 TARGET_QCOM_MEDIA_VARIANT           := caf
 
 # Display
-TARGET_CONTINUOUS_SPLASH_ENABLED      := true
-TARGET_USES_OVERLAY 		          := true
-TARGET_HARDWARE_3D		              := false
-TARGET_HAVE_HDMI_OUT 		          := false
-USE_OPENGL_RENDERER                   := true
-NUM_FRAMEBUFFER_SURFACE_BUFFERS       := 3
-MAX_EGL_CACHE_KEY_SIZE                := 12*1024
-MAX_EGL_CACHE_SIZE                    := 2048*1024
-OVERRIDE_RS_DRIVER                    := libRSDriver.so
+TARGET_CONTINUOUS_SPLASH_ENABLED    := true
+TARGET_USES_OVERLAY 		        := true
+TARGET_HARDWARE_3D		            := false
+TARGET_HAVE_HDMI_OUT 		        := false
+USE_OPENGL_RENDERER                 := true
+NUM_FRAMEBUFFER_SURFACE_BUFFERS     := 3
+MAX_EGL_CACHE_KEY_SIZE              := 12*1024
+MAX_EGL_CACHE_SIZE                  := 2048*1024
+OVERRIDE_RS_DRIVER                  := libRSDriver.so
 
 # Boot animation
 TARGET_SCREEN_WIDTH                 := 540
@@ -175,7 +174,7 @@ BOARD_USES_MMCUTILS 				:= true
 #RECOVERY_VARIANT				    := cm
 
 #Use dlmalloc instead of jemalloc for mallocs
-MALLOC_IMPL                         := jemalloc
+MALLOC_IMPL                         := dlmalloc
 
 # Logging
 TARGET_USES_LOGD                    := false
@@ -183,10 +182,10 @@ TARGET_USES_LOGD                    := false
 TARGET_SKIP_PRODUCT_DEVICE          := true
 	
 # Misc.
-TARGET_SYSTEM_PROP                              := $(LOCAL_PATH)/system.prop
+TARGET_SYSTEM_PROP                  := $(LOCAL_PATH)/system.prop
 
 # Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS                  := $(LOCAL_PATH)
+TARGET_RELEASETOOLS_EXTENSIONS      := $(LOCAL_PATH)
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
