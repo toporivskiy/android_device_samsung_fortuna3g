@@ -111,6 +111,9 @@ TARGET_RECOVERY_DEVICE_MODULES       := libinit_fortuna3g
 BOARD_USES_ALSA_AUDIO                := true
 USE_CUSTOM_AUDIO_POLICY              := 1
 TARGET_QCOM_AUDIO_VARIANT            := caf
+TARGET_ENABLE_QC_AV_ENHANCEMENTS     := true
+AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD   := true
+AUDIO_FEATURE_ENABLED_ALAC_OFFLOAD   := true
 
 # Charger
 BOARD_CHARGER_SHOW_PERCENTAGE        := true
@@ -150,9 +153,9 @@ TARGET_QCOM_MEDIA_VARIANT           := caf
 
 # Display
 TARGET_CONTINUOUS_SPLASH_ENABLED      := true
-TARGET_USES_OVERLAY 		       := true
-TARGET_HARDWARE_3D		      := false
-TARGET_HAVE_HDMI_OUT 		      := false
+TARGET_USES_OVERLAY 		          := true
+TARGET_HARDWARE_3D		              := false
+TARGET_HAVE_HDMI_OUT 		          := false
 USE_OPENGL_RENDERER                   := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS       := 3
 MAX_EGL_CACHE_KEY_SIZE                := 12*1024
@@ -176,7 +179,7 @@ BOARD_USES_MMCUTILS 				:= true
 #RECOVERY_VARIANT				    := cm
 
 #Use dlmalloc instead of jemalloc for mallocs
-MALLOC_SVELTE                       := true
+#MALLOC_SVELTE                       := true
 
 # Logging
 TARGET_USES_LOGD                    := false
